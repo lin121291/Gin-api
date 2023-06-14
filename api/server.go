@@ -1,22 +1,34 @@
 package api
 
-import "github.com/gin-gonic/gin"
+import (
+	db "Gin-api/db/sqlc"
+
+	"github.com/gin-gonic/gin"
+)
 
 type Server struct {
-	store  db.Store
+	store  *db.Store
 	router *gin.Engine
+}
+
+func NewServer(store *db.Store) *Server {
+	server := &Server{store: store}
+	server.setupRouter()
+	return server
+}
+
+func errorResponse(err error) gin.H {
+	return gin.H{"error": err.Error()}
 }
 
 func (server *Server) setupRouter() {
 	router := gin.Default()
 
-	router.POST("/user/re")
+	router.POST("/account", server.createAccount)
 
 	server.router = router
 }
 
-func NewServer() *Server {
-	server := &Server{}
-	server.setupRouter()
-	return server
+func (server *Server) Start(address string) error {
+	return server.router.Run(address)
 }
