@@ -25,6 +25,14 @@ func (server *Server) setupRouter() {
 	router := gin.Default()
 
 	router.POST("/account", server.createAccount)
+	router.DELETE("/account/:id", server.deleteAccount)
+
+	router.POST("/news", server.createNews)
+	router.GET("/news/top", server.topNews)
+	router.POST("news/:id", server.deleteNews)
+
+	router.POST()
+	router.DELETE()
 
 	server.router = router
 }
