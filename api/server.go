@@ -29,10 +29,10 @@ func (server *Server) setupRouter() {
 
 	router.POST("/news", server.createNews)
 	router.GET("/news/top", server.topNews)
-	router.POST("news/:id", server.deleteNews)
+	//router.POST("news/:id", server.deleteNews)
 
-	router.POST()
-	router.DELETE()
+	router.POST("/readlist", server.appendlistItem)
+	router.DELETE("/readlist/:id", server.deletelistItem)
 
 	server.router = router
 }
