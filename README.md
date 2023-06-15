@@ -25,6 +25,6 @@ $ make migrateup
 $ make migratedown
 ```
 
-## database scheme
+## Database scheme
 
 ![image](img/Database_scheme.png)
