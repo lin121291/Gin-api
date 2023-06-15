@@ -9,9 +9,13 @@ import (
 )
 
 type Querier interface {
-	checkoutUpdata(ctx context.Context) ([]User, error)
-	createUsers(ctx context.Context) error
-	deleteUsers(ctx context.Context) error
+	AppendList(ctx context.Context, arg AppendListParams) (ReadingList, error)
+	CreateNews(ctx context.Context, arg CreateNewsParams) (News, error)
+	CreateUsers(ctx context.Context, arg CreateUsersParams) (User, error)
+	DeleteList(ctx context.Context, id int32) error
+	DeleteNews(ctx context.Context, id int32) error
+	DeleteUsers(ctx context.Context, id int32) error
+	GetTopNews(ctx context.Context) ([]News, error)
 }
 
 var _ Querier = (*Queries)(nil)

@@ -9,4 +9,3 @@ INSERT INTO news (title, content, date_published) VALUES ($1,$2,$3) RETURNING *;
 
 -- name: GetTopNews :many
 SELECT * FROM news Limit 10;
-
