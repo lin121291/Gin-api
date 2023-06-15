@@ -1,8 +1,8 @@
 
-DB_URL=mysql://root:secret@tcp(127.0.0.1:3306)/news
+DB_URL=postgresql://root:secret@localhost:5432/news?sslmode=disable
 
-mysql-up:
-	docker run --name mysql8 -p 3306:3306  -e MYSQL_ROOT_PASSWORD=secret -d mysql:8
+postgres:
+	docker run --name postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:14-alpine
 
 migrateup:
 	migrate -path db/migration -database "$(DB_URL)" -verbose up
@@ -12,3 +12,9 @@ migratedown:
 
 sqlc: 	
 	sqlc generate
+
+test:
+	
+
+server:
+	go run main.go
